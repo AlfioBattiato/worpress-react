@@ -11,7 +11,7 @@ function Footer() {
             <div className="contact-info">
                 <h4>Contatti</h4>
                 <p>Telefono: [inserisci numero di contatto]</p>
-                <p>Email: <a href="mailto:info@tuonegozio.com">info@tuonegozio.com</a></p>
+                <p>Email: <a href="mailto:info@scentè.com">info@scentè.com</a></p>
             </div>
             <div className="social-media">
                 <h4>Seguici</h4>

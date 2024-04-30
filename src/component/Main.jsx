@@ -6,7 +6,7 @@ function Main() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost/wordpress/wp-json/wp/v2/posts/')
+        fetch('http://localhost/wordpress/wp-json/wp/v2/posts/?_embed=1')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Errore nella richiesta');
@@ -24,20 +24,24 @@ function Main() {
 
     return (
         <div className='container my-5"'>
-            <h1>Benvenuto nel blog</h1>
-            <div className="d-flex gap-2 py-3 ">
-                {data && (data.map((article, index) =>
+            <h1>Benvenuto nel blog Scentè</h1>
+            <div className="d-flex gap-2 py-3 flex-wrap ">
+                {data ? (data.map((article, index) =>
                     <Mycard
                         key={index}
-                        img={article.yoast_head_json.og_image[0].url}
+                        img={article._embedded['wp:featuredmedia']? article._embedded['wp:featuredmedia'][0].source_url : ""}
                         title={article.title.rendered}
-                        id= {article.id}
+                        id={article.id}
                     >
                     </Mycard>
 
                 )
-                )}
-           
+                ) : (
+                    <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+            )}
+
             </div>
         </div>
     );
